@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mongodbserver:
+    build:
+      context: ./
+      dockerfile: ./server.Dockerfile
+    image: hunnain/mongodbserver
+    ports:
+      - "5050:5050"
+  reactclient:
+    build:
+      context: ./
+      dockerfile: ./client.Dockerfile
+    image: hunnain/reactclient
+    ports:
+      - "6565:6565"
+    links:
+      - mongodbserver
